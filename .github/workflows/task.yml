@@ -20,7 +20,7 @@ jobs:
       run: sudo apt-get install gcc
 
     - name: Compile C code
-      run: gcc -o hello hello.c
+      run: gcc -o main main.c
 
     - name: Run executable
       run: ./main
