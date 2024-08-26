@@ -2,6 +2,11 @@ name: Python App Workflow
 
 on:
   workflow_dispatch:
+    inputs:
+      levels:
+        description: 'Number of directory levels to display with tree command'
+        required: true
+        default: '2'
 
 jobs:
   install-and-run:
@@ -34,3 +39,14 @@ jobs:
 
       - name: List files
         run: ls -al
+
+  run-tree-command:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Run tree command
+        run: |
+          sudo apt-get install -y tree
+          tree -L ${{ github.event.inputs.levels }}
